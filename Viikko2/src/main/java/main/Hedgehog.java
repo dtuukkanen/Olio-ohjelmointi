@@ -17,12 +17,12 @@ public class Hedgehog {
     }
 
     /* Make Hedgehog speak */
-    public void speak(String teksti) {
-        if (teksti.isBlank()) {
+    public void speak(String text) {
+        if (text.isBlank()) {
             System.out.println("Olen " + name + " ja ikäni on " + age + " vuotta, mutta antaisitko silti syötteen?");
             return;
         }
-        System.out.println(name + ": " + teksti);
+        System.out.println(name + ": " + text);
     }
 
     /* Make Hedgehog run */

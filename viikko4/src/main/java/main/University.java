@@ -38,13 +38,7 @@ public class University {
         return students.get(chosen);
     }
 
-    public void setGrade(int i, String course, int grade) {
-        Student student = students.get(i);
-        student.addGrade(course, grade);
-    }
-
-    public void listStudies(int i) {
-        Student student = students.get(i);
+    public void listStudies(Student student) {
         student.printStudies();
     }
 
@@ -66,6 +60,5 @@ public class University {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        
     }
 }

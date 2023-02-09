@@ -44,13 +44,15 @@ public class App {
                     String course = sc.nextLine();
                     System.out.println("Mikä arvosana kurssille lisätään?");
                     int grade = Integer.parseInt(sc.nextLine());
-                    university.setGrade(chosen, course, grade);
+                    student = university.getStudent(chosen);
+                    student.addGrade(course, grade);
                     break;
                 case 4:
                     university.listStudentsIndexed();
                     System.out.println("Minkä opiskelijan suoritteet listataan?");
                     chosen = Integer.parseInt(sc.nextLine());
-                    university.listStudies(chosen);
+                    student = university.getStudent(chosen);
+                    university.listStudies(student);
                     break;
                 case 5:
                     university.listStudentsIndexed();

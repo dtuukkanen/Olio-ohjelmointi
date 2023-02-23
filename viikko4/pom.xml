@@ -5,17 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>main</groupId>
-<<<<<<< HEAD:Viikko1/tehtavat/pom.xml
-  <artifactId>tehtavat</artifactId>
+  <artifactId>viikko4</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>tehtavat</name>
-=======
-  <artifactId>viikko2</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
-  <name>viikko2</name>
->>>>>>> be5c677b0968df5d94d3a4fa9f7a39b9cf882724:viikko2/pom.xml
+  <name>viikko4</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

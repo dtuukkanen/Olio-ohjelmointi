@@ -6,7 +6,7 @@ public class Gifu {
     private String university;
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Student> students = new ArrayList<>();
-    private ArrayList<Enrollment> enrollments = new ArrayList<>();
+    //private ArrayList<Enrollment> enrollments = new ArrayList<>();
 
     public Gifu(String university) {
         this.university = university;

@@ -1,14 +1,21 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
     public static void main( String[] args ) {
         Scanner sc = new Scanner(System.in); 
+
         String input;
         int option;
         Boolean exit = false;
         Gifu sisu = null;
+        Student student;
+        Course course;
+        int index;
+        ArrayList<Enrollment> courses;
+        ArrayList<Enrollment> students;
 
         System.out.println("Tervetuloa Gifu-järjestelmään");
         System.out.println("Mille yliopistolle haluat ottaa järjestelmän käyttöön?");
@@ -36,16 +43,16 @@ public class App {
                     String courseId = sc.nextLine();
                     System.out.println("Anna kurssin maksimi opiskelijamäärä:");
                     int courseAmountOfStudents = Integer.parseInt(sc.nextLine());
-                    Course newCourse = new Course(courseAmountOfStudents, courseName, courseId);
-                    sisu.addCourse(newCourse);
+                    course = new Course(courseName, courseId, courseAmountOfStudents);
+                    sisu.addCourse(course);
                     break;
                 case 2:
                     System.out.println("Anna opiskelijan nimi:");
                     String studentName = sc.nextLine();
                     System.out.println("Anna opiskelijan opiskelijanumero:");
                     String studentId = sc.nextLine();
-                    Student newStudent = new Student(studentName, studentId);
-                    sisu.addStudent(newStudent);
+                    student = new Student(studentName, studentId);
+                    sisu.addStudent(student);
                     break;
                 case 3:
                     sisu.listCourses();
@@ -53,12 +60,69 @@ public class App {
                 case 4:
                     sisu.listStudents();
                     break;
+                case 5:
+                    sisu.listCourses();
+                    System.out.println("Mille kurssille haluat lisätä opiskelijan? Syötä kurssin numero:");
+                    index = Integer.parseInt(sc.nextLine());
+                    course = sisu.getCourse(index);
+                    sisu.listStudents();
+                    System.out.println("Minkä opiskelijan haluat lisätä kurssille? Syötä opiskelijan numero:");
+                    index = Integer.parseInt(sc.nextLine());
+                    student = sisu.getStudent(index);
+                    sisu.enrollStudent(student, course);
+                    break;
+                case 6:
+                    sisu.listCourses();
+                    System.out.println("Minkä kurssin haluat arvostella? Syötä kurssin numero:");
+                    index = Integer.parseInt(sc.nextLine());
+                    course = sisu.getCourse(index);
+                    students = sisu.getEnrollments(course);
+                    for (Enrollment enrollment : students) {
+                        student = enrollment.getStudent();
+                        System.out.println("Anna arvosana opiskelijalle " + student.getInformation());
+                        int grade = Integer.parseInt(sc.nextLine());
+                        enrollment.gradeCourse(grade);
+                    }
+                    break;
+                case 7:
+                    sisu.listCourses();
+                    System.out.println("Minkä kurssin opiskelijat haluat listata? Syötä kurssin numero:");
+                    index = Integer.parseInt(sc.nextLine());
+                    course = sisu.getCourse(index);
+                    students = sisu.getEnrollments(course);
+                    for (Enrollment enrollment : students) {
+                        student = enrollment.getStudent();
+                        System.out.println(student.getInformation() + ", arvosana: " + enrollment.getGrade());
+                    }
+                    break;
+                case 8:
+                    sisu.listStudents();
+                    System.out.println("Minkä opiskelijan arvosanat haluat listata? Syötä opiskelijan numero:");
+                    index = Integer.parseInt(sc.nextLine());
+                    student = sisu.getStudent(index);
+                    courses = sisu.getEnrollments(student);
+                    System.out.println("Opiskelijan " + student.getInformation() + " arvosanat:");
+                    for (Enrollment enrollment : courses) {
+                        course = enrollment.getCourse();
+                        System.out.println(course.getInformation() + ", arvosana: " + enrollment.getGrade());
+                    }
+                    break;
+                case 9:
+                    for (Course courseInCourses : sisu.getCourses()) {
+                        courses = sisu.getEnrollments(courseInCourses);
+                        System.out.println(courseInCourses.getInformation());
+                        for (Enrollment enrollment : courses) {
+                            student = enrollment.getStudent();
+                            System.out.println(student.getInformation() + ", arvosana: " + enrollment.getGrade());
+                        }
+                    }
+                    break;
                 case 0:
-                    System.out.println("Kiitos ohjelman käytöstä.");
                     exit = true;
                     break;
             }
         }
+        System.out.println("Kiitos ohjelman käytöstä.");
         sc.close();
     }
 }

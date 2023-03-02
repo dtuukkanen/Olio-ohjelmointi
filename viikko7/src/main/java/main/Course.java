@@ -5,10 +5,10 @@ public class Course implements PrintInfo {
     private String name;
     private String id;
 
-    public Course (int maxNumberOfStudents, String name, String id) {
-        this.maxNumberOfStudents = maxNumberOfStudents;
+    public Course (String name, String id, int maxNumberOfStudents) {
         this.name = name;
         this.id = id;
+        this.maxNumberOfStudents = maxNumberOfStudents;
     }
 
     public String getInformation() {

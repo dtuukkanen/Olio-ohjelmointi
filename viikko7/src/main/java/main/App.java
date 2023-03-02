@@ -5,15 +5,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main( String[] args ) {
+        // Import scanner
         Scanner sc = new Scanner(System.in); 
 
+        // Declare variables that will be used multiple times
         String input;
         int option;
+        int index;
         Boolean exit = false;
         Gifu sisu = null;
         Student student;
         Course course;
-        int index;
         ArrayList<Enrollment> courses;
         ArrayList<Enrollment> students;
 
@@ -23,6 +25,7 @@ public class App {
         sisu = new Gifu(input);
 
         while(!exit) {
+            // Menu
             System.out.print("1) Luo uusi kurssi, ");
             System.out.print("2) Luo uusi opiskelija, ");
             System.out.print("3) Listaa kurssit, ");
@@ -37,6 +40,7 @@ public class App {
 
             switch(option) {
                 case 1:
+                    // Add course
                     System.out.println("Anna kurssin nimi:");
                     String courseName = sc.nextLine();
                     System.out.println("Anna kurssin ID:");
@@ -47,6 +51,7 @@ public class App {
                     sisu.addCourse(course);
                     break;
                 case 2:
+                    // Add student
                     System.out.println("Anna opiskelijan nimi:");
                     String studentName = sc.nextLine();
                     System.out.println("Anna opiskelijan opiskelijanumero:");
@@ -55,12 +60,15 @@ public class App {
                     sisu.addStudent(student);
                     break;
                 case 3:
+                    // List courses
                     sisu.listCourses();
                     break;
                 case 4:
+                    // List students
                     sisu.listStudents();
                     break;
                 case 5:
+                    // Add student to course
                     sisu.listCourses();
                     System.out.println("Mille kurssille haluat lisätä opiskelijan? Syötä kurssin numero:");
                     index = Integer.parseInt(sc.nextLine());
@@ -72,6 +80,7 @@ public class App {
                     sisu.enrollStudent(student, course);
                     break;
                 case 6:
+                    // Grade course
                     sisu.listCourses();
                     System.out.println("Minkä kurssin haluat arvostella? Syötä kurssin numero:");
                     index = Integer.parseInt(sc.nextLine());
@@ -85,6 +94,7 @@ public class App {
                     }
                     break;
                 case 7:
+                    // List students in course
                     sisu.listCourses();
                     System.out.println("Minkä kurssin opiskelijat haluat listata? Syötä kurssin numero:");
                     index = Integer.parseInt(sc.nextLine());
@@ -96,6 +106,7 @@ public class App {
                     }
                     break;
                 case 8:
+                    // List courses that have the student
                     sisu.listStudents();
                     System.out.println("Minkä opiskelijan arvosanat haluat listata? Syötä opiskelijan numero:");
                     index = Integer.parseInt(sc.nextLine());
@@ -108,6 +119,7 @@ public class App {
                     }
                     break;
                 case 9:
+                    // List students in all courses
                     for (Course courseInCourses : sisu.getCourses()) {
                         courses = sisu.getEnrollments(courseInCourses);
                         System.out.println(courseInCourses.getInformation());
